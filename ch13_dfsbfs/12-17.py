@@ -9,7 +9,7 @@ for i in range(1, n + 1):
     # 각 좌표에 입력받은 값 대입
     for j, d in enumerate(data):
         test_tube[i][j + 1] = d
-        # 바이러스 라면 바이러스위치를 추가
+        # 바이러스라면 바이러스위치를 추가
         if d != 0:
             virus_pos[d].append((i, j + 1))
 s, x, y = map(int, input().split())
