@@ -1,4 +1,4 @@
-# 바이러스
+# 연구소
 from itertools import product, combinations
 import copy
 import time

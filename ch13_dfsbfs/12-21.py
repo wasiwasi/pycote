@@ -40,7 +40,6 @@ while move_count:
             q = deque()
             # 이미 체크한 좌표인지 확인 (이미 소속된 국가를 재탐색하는 것을 막기 위함)
             if not flag[i][j]:
-                print(flag)
                 q.append((i, j))
                 union[union_number].append((i, j))
                 flag[i][j] = 1
