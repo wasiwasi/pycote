@@ -28,12 +28,12 @@ def bfs():
     
     q = deque()
     q.append(shark_pos)
+    visited[shark_pos[0]][shark_pos[1]] = 1
     # 상어자신의 거리를 0으로 초기화
     distance[shark_pos[0]][shark_pos[1]] = 0
     while q:
         x, y = q.popleft()
         # 방문처리
-        visited[x][y] = 1
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
@@ -42,6 +42,7 @@ def bfs():
                 # 미방문이고 상어보다 큰 물고기가 없을 경우(장애물처리) 큐에 넣음
                 if visited[nx][ny] == 0 and sea[nx][ny] <= shark_size:
                     q.append((nx, ny))
+                    visited[nx][ny] = 1
                     distance[nx][ny] = distance[x][y] + 1               
     return distance
 
