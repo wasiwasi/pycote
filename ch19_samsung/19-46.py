@@ -1,7 +1,7 @@
 # 아기 상어
 from collections import deque
-INF = int(1e9)
 
+INF = int(1e9)
 n = int(input())
 shark_size = 2
 shark_grow = 0
@@ -49,9 +49,12 @@ def eat_fish(distance):
     global shark_grow
     global shark_size
     global shark_pos
+    global sea
     # 상어자리를 INF로 초기화시켜 가장 가까운 물고기를 찾기 쉽게 함
     distance[shark_pos[0]][shark_pos[1]] = INF
     min_dist = INF
+    min_x = 21
+    min_y = 21
     for i in range(n):
         for j in range(n):
             # 먹을 수 있는 물고기라면
@@ -61,7 +64,9 @@ def eat_fish(distance):
                     min_x = i
                     min_y = j
                     min_dist = distance[min_x][min_y]
-    
+    # 먹을 수 있는 물고기가 갇혀있을 경우
+    if min_x == 21 and min_y == 21:
+        return 0
     # 물고기 삭제
     fishs.remove(sea[min_x][min_y])
     sea[min_x][min_y] = 0
@@ -80,6 +85,9 @@ count = 0
 # fishs는 오름차순으로 정렬되어있어 첫 원소가 작은 물고기라면 먹을 수 있는 상태
 while fishs and fishs[0] < shark_size:
     distance = bfs()
-    count += eat_fish(distance)
+    dist = eat_fish(distance)
+    if not dist:
+        break
+    count += dist
                                 
 print(count)
